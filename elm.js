@@ -10113,9 +10113,9 @@ Elm.Main.make = function (_elm) {
    var update = F2(function (action,model) {
       var _p0 = action;
       if (_p0.ctor === "Increment") {
-            return {count: model.count + 1,dec: model.dec,inc: model.inc + 1};
+            return _U.update(model,{count: model.count + 1,inc: model.inc + 1});
          } else {
-            return {count: model.count - 1,dec: model.dec + 1,inc: model.inc};
+            return _U.update(model,{count: model.count - 1,dec: model.dec + 1});
          }
    });
    var Decrement = {ctor: "Decrement"};

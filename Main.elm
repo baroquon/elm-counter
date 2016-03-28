@@ -13,8 +13,16 @@ type Action = Increment | Decrement
 update : Action -> Model -> Model
 update action model =
   case action of
-    Increment -> { count = model.count + 1, dec = model.dec, inc = model.inc + 1 }
-    Decrement -> { count = model.count - 1, dec = model.dec + 1, inc = model.inc }
+    Increment ->
+      { model |
+        count = model.count + 1,
+        inc = model.inc + 1
+      }
+    Decrement ->
+      { model |
+        count = model.count - 1,
+        dec = model.dec + 1
+      }
 
 view : Signal.Address Action -> Model -> Html
 view address model =
@@ -22,10 +30,12 @@ view address model =
   [ button [ onClick address Decrement ] [ text "-" ]
   , div [] [text (toString model.count)]
   , button [ onClick address Increment ] [ text "+" ]
-  , h3 [] [ text "Increment Clicked "
+  , h3 []
+    [ text "Increment Clicked "
     , text (toString model.inc)
     ]
-  , h3 [] [ text "Decrement Clicked "
+  , h3 []
+    [ text "Decrement Clicked "
     , text (toString model.dec)
     ]
   ]
